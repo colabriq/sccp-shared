@@ -13,7 +13,7 @@ public class ConfigLoader {
 		    return configHelper.properties(propsFileURL);
 		}
 		else {
-		    throw new ConfigurationException("Config file not found");
+		    throw new ConfigurationException("Config file not found: " + name);
 		}
 	}
 }
