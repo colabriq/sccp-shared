@@ -1,18 +1,20 @@
 package com.goodforgoodbusiness.shared;
 
+import java.util.Optional;
+
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 
 public class TripleUtil {
-	public static String valueOf(Node node) {
+	public static Optional<String> valueOf(Node node) {
 		if (node == null || node.equals(Node.ANY)) {
-			return null;
+			return Optional.empty();
 		}
 		else if (node.isURI()) {
-			return node.getURI();
+			return Optional.of(node.getURI());
 		}
 		else if (node.isLiteral()) {
-			return node.getLiteralValue().toString();
+			return Optional.of(node.getLiteralValue().toString());
 		}
 		else {
 			throw new IllegalArgumentException(node.toString());
@@ -21,9 +23,9 @@ public class TripleUtil {
 	
 	public static String [] toValueArray(Triple triple) {
 		return new String [] {
-			valueOf(triple.getSubject()),
-			valueOf(triple.getPredicate()),
-			valueOf(triple.getObject())
+			valueOf(triple.getSubject()).orElse(null),
+			valueOf(triple.getPredicate()).orElse(null),
+			valueOf(triple.getObject()).orElse(null)
 		};
 	}
 }
