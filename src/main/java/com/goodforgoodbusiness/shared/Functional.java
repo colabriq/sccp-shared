@@ -19,25 +19,4 @@ public class Functional {
 			.stream()
 		;
 	}
-	
-//	public static interface FunctionThatThrows<T, R>{
-//		R apply(T t) throws Exception;
-//	}
-//	
-//	public static class TrappedException extends RuntimeException {
-//		public TrappedException(Exception e) {
-//			super(e);
-//		}
-//	}
-//
-//	public static <T, R> Function<T, R> trapEx(FunctionThatThrows<T, R> in) {
-//		return x -> {
-//			try {
-//				return in.apply(x);
-//			}
-//			catch (Exception e) {
-//				throw new TrappedException(e);
-//			}
-//		};
-//	}
 }

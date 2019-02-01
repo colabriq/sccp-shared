@@ -6,8 +6,8 @@ import java.util.Properties;
 import org.apache.log4j.PropertyConfigurator;
 
 public class LogConfigurer {
-	public static void init(Class<?> clazz) {
-		try (var is = clazz.getClassLoader().getResourceAsStream("log4j.properties")) {
+	public static void init(Class<?> clazz, String propertyFile) {
+		try (var is = clazz.getClassLoader().getResourceAsStream(propertyFile)) {
 			Properties props = new Properties();
 			props.load(is);
 			
