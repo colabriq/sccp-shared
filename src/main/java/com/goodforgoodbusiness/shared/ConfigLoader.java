@@ -25,15 +25,14 @@ public class ConfigLoader {
 				.build();
 	
 	public static Configuration loadConfig(Class<?> base, String name) throws ConfigurationException {
-		var propsFileURL = base.getClassLoader().getResource(name);
-		
-		if (propsFileURL != null) {
+		var propsFileUrl = base.getClassLoader().getResource(name);
+		if (propsFileUrl != null) {
 			return new FileBasedConfigurationBuilder<>(PropertiesConfiguration.class)
                 .configure(
                 	new Parameters()
                 		.fileBased()
                 		.setPrefixLookups(LOOKUPS)
-                		.setURL(propsFileURL)
+                		.setURL(propsFileUrl)
                 )
                 .getConfiguration()
             ;
@@ -41,5 +40,17 @@ public class ConfigLoader {
 		else {
 		    throw new ConfigurationException("Config file not found: " + name);
 		}
+	}
+	
+	public static Configuration loadConfig(String filename) throws ConfigurationException {
+		return new FileBasedConfigurationBuilder<>(PropertiesConfiguration.class)
+            .configure(
+            	new Parameters()
+            		.fileBased()
+            		.setPrefixLookups(LOOKUPS)
+            		.setFileName(filename)
+            )
+            .getConfiguration()
+        ;
 	}
 }
