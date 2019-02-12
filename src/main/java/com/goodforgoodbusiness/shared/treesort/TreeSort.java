@@ -32,7 +32,7 @@ public class TreeSort {
 			      }
 			      
 			      if (!found && !tolerateIncomplete) {
-			    	  throw new IllegalArgumentException("Missing node");
+			    	  throw new TreeSortMissingPredecessorException(u, v);
 			      }
 				}
 			);
