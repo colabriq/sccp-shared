@@ -19,13 +19,4 @@ public class Hex {
 		
 		return result;
 	}
-	
-	public static void main(String[] args) {
-		String hex = encode(new byte [] { -1, -128, 0, 1, 10, 127 });
-		System.out.println(hex);
-		
-		for (byte b : decode(hex)) {
-			System.out.print(b + " ");
-		}
-	}
 }
