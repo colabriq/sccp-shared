@@ -51,7 +51,7 @@ public class ObservableSet<T> implements Set<T> {
 	public Iterator<T> iterator() {
 		var it = set.iterator();
 		
-		return new Iterator<T>() {
+		return new Iterator<>() {
 			@Override
 			public boolean hasNext() {
 				return it.hasNext();
@@ -131,6 +131,7 @@ public class ObservableSet<T> implements Set<T> {
 
 	@Override
 	public void clear() {
+		// hmmm
 	}
 	
 	@Override

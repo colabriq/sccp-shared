@@ -6,7 +6,7 @@ import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 
 public class TripleUtil {
-	public static final Triple ANYANYANY = new Triple(ANY, ANY, ANY);
+	public static final Triple ANY_ANY_ANY = new Triple(ANY, ANY, ANY);
 	
 	public static boolean isConcrete(Triple triple) {
 		if (triple.getSubject() == null || triple.getSubject().equals(ANY)) {

@@ -1,8 +1,5 @@
 package com.goodforgoodbusiness.shared;
 
-import java.util.Deque;
-import java.util.List;
-
 public class Combinatorics {
 	public static void main(String [] args) {
 		// pick 1
@@ -42,15 +39,15 @@ public class Combinatorics {
 
 	}
 	
-	private static void round(int start, int count, int [] input, Deque<Integer> picked, List<Deque<Integer>> result) {
-		for (int x = start; x < input.length; x++) {
-			picked.addLast(input[x]);
-			if (picked.size() == count) {
-				result.add(picked);
-			}
-			else {
-				round(start + 1, count, input, picked, result);
-			}
-		}
-	}
+//	private static void round(int start, int count, int [] input, Deque<Integer> picked, List<Deque<Integer>> result) {
+//		for (int x = start; x < input.length; x++) {
+//			picked.addLast(input[x]);
+//			if (picked.size() == count) {
+//				result.add(picked);
+//			}
+//			else {
+//				round(start + 1, count, input, picked, result);
+//			}
+//		}
+//	}
 }

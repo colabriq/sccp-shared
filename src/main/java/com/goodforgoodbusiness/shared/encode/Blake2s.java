@@ -1327,7 +1327,7 @@ public class Blake2s {
 
         if (this.isFinished) return this.result;
 
-        for (i = (int) this.nx; i < 64; i++) this.x[(int) i] = 0;
+        for (i = (int) this.nx; i < 64; i++) this.x[i] = 0;
 
         // Set last block flag.
         this.f0 = 0xffffffff;
@@ -1337,11 +1337,11 @@ public class Blake2s {
 
         byte[] d = new byte[32];
         for (i = 0; i < 8; i++) {
-            long h = this.h[(int) i];
-            d[i * 4 + 0] = (byte) ((h >>> 0) & 0xff);
-            d[i * 4 + 1] = (byte) ((h >>> 8) & 0xff);
-            d[i * 4 + 2] = (byte) ((h >>> 16) & 0xff);
-            d[i * 4 + 3] = (byte) ((h >>> 24) & 0xff);
+            final long mh = this.h[i];
+            d[i * 4 + 0] = (byte) ((mh >>> 0) & 0xff);
+            d[i * 4 + 1] = (byte) ((mh >>> 8) & 0xff);
+            d[i * 4 + 2] = (byte) ((mh >>> 16) & 0xff);
+            d[i * 4 + 3] = (byte) ((mh >>> 24) & 0xff);
         }
 
         this.result = Arrays.copyOfRange(d, 0, this.digestLength);

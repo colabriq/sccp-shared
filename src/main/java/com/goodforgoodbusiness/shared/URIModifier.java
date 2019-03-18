@@ -30,14 +30,14 @@ public class URIModifier {
 		this.fragment = base.getFragment();
 	}
 	
-	public URIModifier appendPath(String path) {
+	public URIModifier appendPath(String pathPart) {
 		if (this.path == null || this.path.length() == 0) {
 			if (path.charAt(0) != '/') {
 				this.path += '/';
 			}
 		}
 		
-		this.path += path;
+		this.path += pathPart;
 		return this;
 	}
 	
@@ -59,8 +59,6 @@ public class URIModifier {
 	}
 	
 	public URI build() throws URISyntaxException {
-		var scheme = this.scheme;
-		
 		var authparts = this.authority.split(":");
 		var host = authparts[0];
 		var port = authparts.length > 1 ? parseInt(authparts[1]) : -1;

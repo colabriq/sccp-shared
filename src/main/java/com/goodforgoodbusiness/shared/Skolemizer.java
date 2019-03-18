@@ -16,23 +16,21 @@ import org.apache.jena.mem.GraphTripleStoreBase;
 import org.apache.jena.mem.NodeToTriplesMapMem;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
-import org.apache.jena.sparql.core.DatasetGraphMaker;
+import org.apache.jena.sparql.core.DatasetGraphFactory;
 
 public class Skolemizer {
 	/**
 	 * Returns a temporary Dataset to use for import purposes (for example).
 	 */
 	public static Dataset autoSkolemizingDataset() {
-		var dataGraphMaker = new DatasetGraphMaker(
+		return DatasetFactory.wrap(DatasetGraphFactory.wrap(
 			new GraphMem() {
 				@Override
 				protected TripleStore createTripleStore() {
 					return new SkolemizingTripleStore( this );
 				}
 			}
-		);
-		
-		return DatasetFactory.create(dataGraphMaker);
+		));
 	}
 	
 	private static class SkolemizingTripleStore extends GraphTripleStoreBase implements TripleStore {
@@ -51,6 +49,7 @@ public class Skolemizer {
 			return "urn:uuid:" + UUID.randomUUID();
 		}
 		
+		@Override
 		public void add(Triple trup) {
 			var subject = trup.getSubject();
 			var predicate = trup.getPredicate();

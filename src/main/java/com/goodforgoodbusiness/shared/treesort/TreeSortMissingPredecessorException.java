@@ -1,6 +1,8 @@
 package com.goodforgoodbusiness.shared.treesort;
 
 public class TreeSortMissingPredecessorException extends IllegalArgumentException {
+	private static final long serialVersionUID = 1L;
+	
 	private final TreeNode<?> node;
 	private final Object predecessor;
 
