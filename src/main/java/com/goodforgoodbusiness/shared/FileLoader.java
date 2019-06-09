@@ -1,6 +1,7 @@
 package com.goodforgoodbusiness.shared;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -19,11 +20,16 @@ public class FileLoader {
 		}
 	}
 	
-	public static void scan(File folder, Consumer<File> consumer) {
-		var files = new LinkedList<File>();
-		scanInto(files, folder);
-		for (File file : files) {
-			consumer.accept(file);
+	public static void scan(File folder, Consumer<File> consumer) throws FileNotFoundException {
+		if (folder.exists()) {
+			var files = new LinkedList<File>();
+			scanInto(files, folder);
+			for (File file : files) {
+				consumer.accept(file);
+			}
+		}
+		else {
+			throw new FileNotFoundException(folder.getAbsolutePath());
 		}
 	}
 }
