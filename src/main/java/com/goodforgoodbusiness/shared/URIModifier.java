@@ -31,13 +31,18 @@ public class URIModifier {
 	}
 	
 	public URIModifier appendPath(String pathPart) {
-		if (this.path == null || this.path.length() == 0) {
-			if (path.charAt(0) != '/') {
+		if (pathPart != null && pathPart.length() > 0) {
+			if (this.path == null || this.path.length() == 0) {
+				this.path = "/";
+			}
+	
+			if ((this.path.charAt(0) != '/') && (pathPart.charAt(0) != '/')) {
 				this.path += '/';
 			}
+			
+			this.path += pathPart;
 		}
 		
-		this.path += pathPart;
 		return this;
 	}
 	
