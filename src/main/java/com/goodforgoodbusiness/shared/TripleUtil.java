@@ -8,6 +8,10 @@ import org.apache.jena.graph.Triple;
 public class TripleUtil {
 	public static final Triple ANY_ANY_ANY = new Triple(ANY, ANY, ANY);
 	
+	public static boolean isNone(Node node) {
+		return (node == null) || (node == Node.ANY);
+	}
+	
 	public static boolean isConcrete(Triple triple) {
 		if (triple.getSubject() == null || triple.getSubject().equals(ANY)) {
 			return false;
