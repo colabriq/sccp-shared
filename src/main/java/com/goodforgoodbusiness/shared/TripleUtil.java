@@ -9,7 +9,7 @@ public class TripleUtil {
 	public static final Triple ANY_ANY_ANY = new Triple(ANY, ANY, ANY);
 	
 	public static boolean isNone(Node node) {
-		return (node == null) || (node == Node.ANY);
+		return (node == Node.ANY) || (node == null);
 	}
 	
 	public static boolean isConcrete(Triple triple) {
