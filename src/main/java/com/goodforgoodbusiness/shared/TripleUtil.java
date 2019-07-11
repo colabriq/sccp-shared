@@ -8,31 +8,28 @@ import org.apache.jena.graph.Triple;
 public class TripleUtil {
 	public static final Triple ANY_ANY_ANY = new Triple(ANY, ANY, ANY);
 	
-	public static boolean isNone(Node node) {
+	/**
+	 * Does a particular Node represent 'ANY' in a match?
+	 */
+	public static boolean isAny(Node node) {
 		return (node == Node.ANY) || (node == null);
 	}
 	
+	/**
+	 * Is the triple fully concrete?
+	 */
 	public static boolean isConcrete(Triple triple) {
-		if (triple.getSubject() == null || triple.getSubject().equals(ANY)) {
-			return false;
-		}
-		
-		if (triple.getPredicate() == null || triple.getPredicate().equals(ANY)) {
-			return false;
-		}
-		
-		if (triple.getObject() == null || triple.getObject().equals(ANY)) {
-			return false;
-		}
-		
-		return true;
+		return !isAny(triple.getSubject()) && !isAny(triple.getPredicate()) && !isAny(triple.getObject());
 	}
 	
+	/**
+	 * Does a concrete triple match a particular pattern?
+	 */
 	public static boolean isMatch(Triple pattern, Triple triple) {
 		// would this triple have been caught by this iterator?
-		if (pattern.getSubject().equals(Node.ANY) || pattern.getSubject().equals(triple.getSubject())) {
-			if (pattern.getPredicate().equals(Node.ANY) || pattern.getPredicate().equals(triple.getPredicate())) {
-				if (pattern.getObject().equals(Node.ANY) || pattern.getObject().equals(triple.getObject())) {
+		if (isAny(pattern.getSubject()) || pattern.getSubject().equals(triple.getSubject())) {
+			if (isAny(pattern.getPredicate()) || pattern.getPredicate().equals(triple.getPredicate())) {
+				if (isAny(pattern.getObject()) || pattern.getObject().equals(triple.getObject())) {
 					return true;
 				}
 			}
