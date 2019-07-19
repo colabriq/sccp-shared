@@ -22,6 +22,10 @@ public class URIModifier {
 	private String query;
 	private String fragment;
 	
+	private URIModifier(String base) throws URISyntaxException {
+		this(new URI(base));
+	}
+	
 	private URIModifier(URI base) {
 		this.scheme = base.getScheme();
 		this.authority = base.getAuthority();
