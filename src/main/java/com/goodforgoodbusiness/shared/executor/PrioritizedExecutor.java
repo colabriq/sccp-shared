@@ -80,6 +80,8 @@ public class PrioritizedExecutor extends ThreadPoolExecutor {
 	}
 	
 	public void safeStop() {
+		shutdown();
+		
 		// flush + await safe stop 
 		while (!isTerminated()) {
 			try {
