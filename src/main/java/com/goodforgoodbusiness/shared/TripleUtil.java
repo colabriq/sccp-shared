@@ -2,11 +2,20 @@ package com.goodforgoodbusiness.shared;
 
 import static org.apache.jena.graph.Node.ANY;
 
+import java.util.stream.Stream;
+
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 
 public class TripleUtil {
 	public static final Triple ANY_ANY_ANY = new Triple(ANY, ANY, ANY);
+	
+	/**
+	 * Does a particular Node represent 'ANY' in a match?
+	 */
+	public static boolean isConcrete(Node node) {
+		return (node != Node.ANY) && (node != null);
+	}
 	
 	/**
 	 * Does a particular Node represent 'ANY' in a match?
@@ -36,5 +45,46 @@ public class TripleUtil {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Create possible match combinations
+	 * This includes (_, _, _) and (_, p, _)
+	 */
+	public static Stream<Triple> allCombinations(Triple triple) {
+		return Stream.concat(
+			matchingCombinations(triple),
+			Stream.of(
+				ANY_ANY_ANY,
+				new Triple(ANY, triple.getPredicate(), ANY)
+			)
+		);
+	}
+	
+	/**
+	 * Create possible match combinations
+	 * This excludes (_, _, _) and (_, p, _)
+	 */
+	public static Stream<Triple> matchingCombinations(Triple triple) {
+		var sub = triple.getSubject();
+		var pre = triple.getPredicate();
+		var obj = triple.getObject();
+		
+		var combinations = Stream.of(
+			// pick 3
+			new Triple(sub, pre, obj),
+			
+			// pick 2
+			new Triple(sub, pre, ANY),
+			new Triple(sub, ANY, obj),
+			new Triple(ANY, pre, obj),
+			
+			// pick 1
+			new Triple(sub, ANY, ANY),
+			new Triple(ANY, ANY, obj)
+		);
+	
+		
+		return combinations;
 	}
 }

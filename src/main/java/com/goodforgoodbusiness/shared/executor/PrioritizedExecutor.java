@@ -49,9 +49,19 @@ public class PrioritizedExecutor extends ThreadPoolExecutor {
 		);
 	}
 	
+	private void logQueueSize() {
+		var size = getQueue().size();
+		if (size > 10) {
+			log.warn("Executor queue size = " + size);
+		}
+		else {
+			log.debug("Executor queue size = " + size);
+		}
+	}
+	
 	@Override
 	protected void beforeExecute(Thread t, Runnable r) {
-		log.info("ExecutorService queue size = " + getQueue().size());
+		logQueueSize();
 		currentTaskStarted.set(System.currentTimeMillis());
 		super.beforeExecute(t, r);
 	}
@@ -91,7 +101,7 @@ public class PrioritizedExecutor extends ThreadPoolExecutor {
             log.error("Error from task", cause);
         }
         
-        log.info("ExecutorService queue size = " + getQueue().size());
+        logQueueSize();
 	}
 	
 	public void safeStop() {
