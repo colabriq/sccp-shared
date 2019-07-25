@@ -3,6 +3,7 @@ package com.goodforgoodbusiness.shared;
 import static java.util.Optional.empty;
 import static org.apache.jena.graph.Node.ANY;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -13,7 +14,7 @@ public class TripleUtil {
 	public static final Triple ANY_ANY_ANY = new Triple(ANY, ANY, ANY);
 	
 	/**
-	 * Does a particular Node represent 'ANY' in a match?
+	 * Is a particular Node concrete (not ANY)
 	 */
 	public static boolean isConcrete(Node node) {
 		return (node != Node.ANY) && (node != null);
@@ -88,6 +89,61 @@ public class TripleUtil {
 	
 		
 		return combinations;
+	}
+	
+	/**
+	 * Create possible match combinations
+	 * This excludes (_, _, _) and (_, p, _)
+	 */
+	public static Stream<Triple> widerCombinations(Triple triple) {
+		var sub = triple.getSubject();
+		var pre = triple.getPredicate();
+		var obj = triple.getObject();
+		
+		// number of concrete nodes
+		var count = (isConcrete(sub) ? 1 : 0) + (isConcrete(pre) ? 1 : 0) + (isConcrete(obj) ? 1 : 0);
+		var wider = new ArrayList<Triple>(6);
+		
+		switch (count) {
+		case 3: 
+			// 3 concrete
+			// pick twos are wider
+			
+			wider.add(new Triple(sub, pre, ANY));
+			wider.add(new Triple(sub, ANY, pre));
+			wider.add(new Triple(ANY, pre, obj));
+			
+			//$FALL-THROUGH$
+			
+		case 2:
+			// 2 concrete
+			// pick twos are wider (above)
+			// pick ones are wider (specific on 
+			
+			if (isAny(sub)) { // ANY pre obj
+				wider.add(new Triple(ANY, ANY, obj));
+				wider.add(new Triple(ANY, pre, ANY));
+			}
+			
+			if (isAny(pre)) { // sub ANY obj
+				wider.add(new Triple(sub, ANY, ANY));
+				wider.add(new Triple(ANY, ANY, obj));
+			}
+			
+			if (isAny(obj)) { // sub pre ANY
+				wider.add(new Triple(ANY, pre, ANY));
+				wider.add(new Triple(sub, ANY, ANY));
+			}
+			
+			//$FALL-THROUGH$
+			
+		case 1:
+			// 1 concrete
+			// ONLY pick zero is wider
+			wider.add(ANY_ANY_ANY);
+		}
+		
+		return wider.stream();
 	}
 	
 	/**
