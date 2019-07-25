@@ -1,7 +1,9 @@
 package com.goodforgoodbusiness.shared;
 
+import static java.util.Optional.empty;
 import static org.apache.jena.graph.Node.ANY;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.apache.jena.graph.Node;
@@ -87,4 +89,41 @@ public class TripleUtil {
 		
 		return combinations;
 	}
+	
+	/**
+	 * Return the value part of a Node in a triple
+	 */
+	public static Optional<String> valueOf(Node node) {
+		if (node == null || node.equals(Node.ANY)) {
+			return empty();
+		}
+		else if (node.isURI()) {
+			return Optional.of(node.getURI());
+		}
+		else if (node.isLiteral()) {
+			return Optional.of(node.getLiteralLexicalForm());
+		}
+		else if (node.isBlank()) {
+			return Optional.of(node.getBlankNodeId().toString());
+		}
+		else {
+			throw new IllegalArgumentException(node.toString());
+		}
+	}
+	
+	/**
+	 * Strip off N3 quotes
+	 */
+	public static String stripN3(String val) {
+		if ((val.charAt(0) == '"') && (val.charAt(val.length() - 1) == '"')) {
+			return val.substring(1, val.length() - 1);
+		}
+		
+		if ((val.charAt(0) == '<') && (val.charAt(val.length() - 1) == '>')) {
+			return val.substring(1, val.length() - 1);
+		}
+		
+		throw new IllegalArgumentException(val);
+	}
+	
 }
