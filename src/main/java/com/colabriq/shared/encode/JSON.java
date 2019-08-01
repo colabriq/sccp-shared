@@ -1,12 +1,12 @@
-package com.goodforgoodbusiness.shared.encode;
+package com.colabriq.shared.encode;
 
 import java.lang.reflect.Type;
 
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 
-import com.goodforgoodbusiness.shared.encode.json.NodeSerializer;
-import com.goodforgoodbusiness.shared.encode.json.TripleSerializer;
+import com.colabriq.shared.encode.json.NodeSerializer;
+import com.colabriq.shared.encode.json.TripleSerializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared;
+package com.colabriq.shared;
 
 public interface ObservableSetListener<T> {
 	public void added(T e);

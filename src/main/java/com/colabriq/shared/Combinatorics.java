@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared;
+package com.colabriq.shared;
 
 public class Combinatorics {
 	public static void main(String [] args) {

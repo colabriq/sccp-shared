@@ -1,2 +1,2 @@
-package com.goodforgoodbusiness.shared;
+package com.colabriq.shared;
 

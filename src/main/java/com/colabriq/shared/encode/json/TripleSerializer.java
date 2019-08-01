@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.encode.json;
+package com.colabriq.shared.encode.json;
 
 import java.lang.reflect.Type;
 

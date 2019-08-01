@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared;
+package com.colabriq.shared;
 
 import java.util.concurrent.ExecutionException;
 

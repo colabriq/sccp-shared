@@ -1,8 +1,8 @@
-package com.goodforgoodbusiness.shared.executor;
+package com.colabriq.shared.executor;
 
 import java.util.concurrent.ExecutorService;
 
-import com.goodforgoodbusiness.shared.executor.PrioritizedExecutor;
+import com.colabriq.shared.executor.PrioritizedExecutor;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;

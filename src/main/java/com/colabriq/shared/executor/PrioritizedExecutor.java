@@ -1,6 +1,6 @@
-package com.goodforgoodbusiness.shared.executor;
+package com.colabriq.shared.executor;
 
-import static com.goodforgoodbusiness.shared.executor.PrioritizedTask.Priority.NORMAL;
+import static com.colabriq.shared.executor.PrioritizedTask.Priority.NORMAL;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import java.util.concurrent.CancellationException;

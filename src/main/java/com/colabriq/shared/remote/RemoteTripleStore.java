@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.remote;
+package com.colabriq.shared.remote;
 
 import java.rmi.Remote;
 

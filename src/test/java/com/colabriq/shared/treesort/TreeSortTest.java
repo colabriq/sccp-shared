@@ -1,6 +1,6 @@
-package com.goodforgoodbusiness.shared.treesort;
+package com.colabriq.shared.treesort;
 
-import static com.goodforgoodbusiness.shared.treesort.TreeSort.sort;
+import static com.colabriq.shared.treesort.TreeSort.sort;
 import static com.google.common.collect.Sets.newHashSet;
 import static java.lang.System.out;
 import static java.util.Arrays.asList;

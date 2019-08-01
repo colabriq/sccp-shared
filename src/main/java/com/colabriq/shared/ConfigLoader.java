@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared;
+package com.colabriq.shared;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;

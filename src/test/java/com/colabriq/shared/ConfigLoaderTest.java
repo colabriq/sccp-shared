@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared;
+package com.colabriq.shared;
 
 import org.apache.commons.configuration2.ex.ConfigurationException;
 

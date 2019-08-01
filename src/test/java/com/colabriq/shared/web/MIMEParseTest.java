@@ -1,8 +1,8 @@
-package com.goodforgoodbusiness.shared.web;
+package com.colabriq.shared.web;
 
 import java.util.LinkedList;
 
-import com.goodforgoodbusiness.shared.MIMEParse;
+import com.colabriq.shared.MIMEParse;
 
 public class MIMEParseTest {
 	public static void main(String[] args) {

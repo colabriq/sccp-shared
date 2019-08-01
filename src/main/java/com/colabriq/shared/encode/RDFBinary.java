@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.encode;
+package com.colabriq.shared.encode;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

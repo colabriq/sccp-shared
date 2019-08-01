@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.executor;
+package com.colabriq.shared.executor;
 
 /**
  * Holds priority for analysis by thread pool.

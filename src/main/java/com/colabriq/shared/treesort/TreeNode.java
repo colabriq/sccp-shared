@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.treesort;
+package com.colabriq.shared.treesort;
 
 import java.util.stream.Stream;
 

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.encode;
+package com.colabriq.shared.encode;
 
 public class Hex {
 	public static String encode(byte [] input) {

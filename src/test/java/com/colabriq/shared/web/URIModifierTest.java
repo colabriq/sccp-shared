@@ -1,8 +1,8 @@
-package com.goodforgoodbusiness.shared.web;
+package com.colabriq.shared.web;
 
 import java.net.URI;
 
-import com.goodforgoodbusiness.shared.URIModifier;
+import com.colabriq.shared.URIModifier;
 
 public class URIModifierTest {
 	public static void main(String[] args) throws Exception {

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.shared.treesort;
+package com.colabriq.shared.treesort;
 
 public class TreeSortMissingPredecessorException extends IllegalArgumentException {
 	private static final long serialVersionUID = 1L;
