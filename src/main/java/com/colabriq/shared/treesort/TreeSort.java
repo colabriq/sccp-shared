@@ -1,8 +1,10 @@
 package com.colabriq.shared.treesort;
 
+import static java.util.stream.Collectors.toMap;
+
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import static java.util.stream.Collectors.toMap;
 
 import org.apache.commons.lang3.mutable.MutableInt;
 
@@ -10,11 +12,11 @@ import org.apache.commons.lang3.mutable.MutableInt;
  * Implement Kahn's algorithm to sort trees
  */
 public class TreeSort {	
-	public static <T, X extends TreeNode<T>> List<X> sort(List<X> graph) {
+	public static <T, X extends TreeNode<T>> List<X> sort(Collection<X> graph) {
 		return sort(graph, false);
 	}
 	
-	public static <T, X extends TreeNode<T>> List<X> sort(List<X> graph, boolean tolerateIncomplete) {
+	public static <T, X extends TreeNode<T>> List<X> sort(Collection<X> graph, boolean tolerateIncomplete) {
 		//  build degree map and calculate degrees 
 		var inDegree = graph.stream().collect(toMap(v -> v, v -> new MutableInt(0)));
 
